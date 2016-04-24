@@ -109,7 +109,7 @@ describe('UNIT Sender', function () {
       sender.sendNoRetry(m, '', function () {});
       expect(args.options.headers.Custom).to.deep.equal(options.headers.Custom);
     });
-    
+
     it('should not set strictSSL of req object if not passed into constructor', function () {
       var options = {
         proxy: 'http://myproxy.com',
@@ -282,7 +282,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if registrationTokens is not an array', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -290,7 +290,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if to is not a string', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -298,7 +298,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if topic is not a string', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -306,7 +306,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if notificationKey is not a string', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -314,7 +314,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if to is empty', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -322,7 +322,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if topic is empty', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -330,7 +330,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if notificationKey is empty', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -338,7 +338,7 @@ describe('UNIT Sender', function () {
       expect(callback.calledOnce).to.be.ok;
       expect(callback.args[0][0]).to.be.a('object');
     });
-    
+
     it('should pass an error into callback if no recipient provided', function () {
       var callback = sinon.spy();
       var sender = new Sender('myKey');
@@ -374,7 +374,7 @@ describe('UNIT Sender', function () {
       var m = new Message({ data: {} });
       sender.sendNoRetry(m, '', callback);
       expect(callback.calledOnce).to.be.ok;
-      expect(callback.args[0][0]).to.equal(500);
+      expect(callback.args[0][0].statusCode).to.equal(500);
     });
 
     it('should return the status code as an error if returned a 401', function () {
@@ -384,7 +384,7 @@ describe('UNIT Sender', function () {
       var m = new Message({ data: {} });
       sender.sendNoRetry(m, '', callback);
       expect(callback.calledOnce).to.be.ok;
-      expect(callback.args[0][0]).to.equal(401);
+      expect(callback.args[0][0].statusCode).to.equal(401);
     });
 
     it('should return the status code as an error if returned a 400', function () {
@@ -394,7 +394,7 @@ describe('UNIT Sender', function () {
       var m = new Message({ data: {} });
       sender.sendNoRetry(m, '', callback);
       expect(callback.calledOnce).to.be.ok;
-      expect(callback.args[0][0]).to.equal(400);
+      expect(callback.args[0][0].statusCode).to.equal(400);
     });
 
     it('should pass an error into the callback if resBody cannot be parsed', function () {
